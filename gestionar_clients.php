@@ -72,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
         file_put_contents($usersFile, implode("\n", $dadesUsuaris));
     
-        // Eliminar les carpetes relacionades amb el client
         $carpetaComandes = "./comandes/$clientEliminat";
         $carpetaCistelles = "./cistelles/$clientEliminat";
     
@@ -280,7 +279,6 @@ function generateClientsPDF($dadesClients) {
                 </div>
             <?php endforeach; ?>
     <form method="post">
-        <!-- Altres elements del formulari -->
         <button type="submit" name="download_clients_pdf">Descarrega PDF dels Clients</button>
     </form>
         <a href="inici.php" class="back-btn">Tornar</a>

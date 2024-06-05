@@ -1,5 +1,5 @@
 <?php
-session_start(); // Inicia la sesión
+session_start();
 
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
@@ -59,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Función para obtener los datos de un usuario por el nombre de usuario
 function obtenirDadesUsuari($nomUsuari, $dadesUsuaris)
 {
     foreach ($dadesUsuaris as $dadaUsuari) {
@@ -71,7 +70,6 @@ function obtenirDadesUsuari($nomUsuari, $dadesUsuaris)
     return null;
 }
 
-// Función para obtener la contraseña de un usuario
 function obtenirContrasenyaUsuari($nomUsuari, $dadesUsuaris)
 {
     foreach ($dadesUsuaris as $dadaUsuari) {

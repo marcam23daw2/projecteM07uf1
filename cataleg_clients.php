@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-// Carregar els productes des d'un fitxer o base de dades
+// carregar els productes
 $productsFile = './LLIBRES/llibres';
 $products = loadProducts($productsFile);
 
-// Funció per carregar els productes
 function loadProducts($filename) {
     if (!file_exists($filename)) {
         return [];
@@ -19,7 +18,6 @@ function loadProducts($filename) {
     return $products;
 }
 
-// Gestionar la selecció de productes
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['cistella'] = [];
     foreach ($_POST['quantitats'] as $productId => $quantitat) {

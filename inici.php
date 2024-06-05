@@ -18,7 +18,6 @@ $username = $_SESSION["username"];
     <title>Interfície</title>
     <link rel="stylesheet" href="CSS/llibreria.css">
     <style>
-        /* Agregamos estilos para el header */
         header {
             display: flex;
             justify-content: space-between;
@@ -28,7 +27,6 @@ $username = $_SESSION["username"];
             color: white;
         }
 
-        /* Estilo para el botón de logout */
         .logout-btn {
             background-color: #00796b;
             color: white;
@@ -45,21 +43,20 @@ $username = $_SESSION["username"];
         table {
             border-collapse: collapse;
             width: 100%;
-            background-color: #f2f2f2; /* Color de fons per a les files */
+            background-color: #f2f2f2; 
         }
 
         th, td {
-            border: 1px solid #ddd; /* Color més suau per a les vores */
+            border: 1px solid #ddd; 
             padding: 8px;
             text-align: left;
         }
 
         th {
-            background-color: #4CAF50; /* Color de fons per al capçalera */
+            background-color: #4CAF50;
             color: white;
         }
 
-        /* Estils per a les files en hover */
         tr:hover {background-color: #ddd;}
     </style>
 </head>

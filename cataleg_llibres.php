@@ -37,17 +37,16 @@ if (isset($_POST['add_llibre'])) {
 if (isset($_POST['modify_llibre'])) {
     $id = $_POST['id'];
 
-    // Recupera les dades del formulari
     $nom = $_POST['nom'];
     $preu = $_POST['preu'];
     $quantitat = $_POST['quantitat'];
     $disponibilitat = $_POST['disponibilitat'];
     $iva = $_POST['iva'];
 
-    // Crea una nova entrada de llibre amb les dades modificades
+    // crear nova entrada
     $llibre = "$id:$nom:$preu:$quantitat:$disponibilitat:$iva";
 
-    // Busca la posició de l'element a modificar
+    // modificar
     $index = -1;
     foreach ($llibres as $key => $value) {
         if (explode(':', $value)[0] === $id) {
@@ -56,7 +55,6 @@ if (isset($_POST['modify_llibre'])) {
         }
     }
 
-    // Si es troba, modifica l'entrada
     if ($index !== -1) {
         $llibres[$index] = $llibre;
         saveLlibres($llibresFile, $llibres);
@@ -77,8 +75,9 @@ if (isset($_POST['download_llibres_pdf'])) {
     generateLlibresPDF($llibres);
 }
 
+// generar pdf
 function generateLlibresPDF($llibres) {
-    require_once('tcpdf/tcpdf.php'); // Asegura que la ruta sigui correcta
+    require_once('tcpdf/tcpdf.php'); 
 
     $pdf = new TCPDF();
     $pdf->AddPage();
@@ -150,7 +149,7 @@ function generateLlibresPDF($llibres) {
             <option value="no">No</option>
         </select><br>
         <label for="iva">IVA:</label>
-        <input type="text" name="iva" required><br> <!-- Aquí afegim l'entrada per l'IVA -->
+        <input type="text" name="iva" required><br> 
         <button type="submit" name="add_llibre">Afegir Llibre</button>
     </form>
 
@@ -159,12 +158,9 @@ function generateLlibresPDF($llibres) {
         <label for="id_modify">Selecciona el llibre a modificar:</label>
         <select name="id" id="id_modify" required>
             <?php foreach ($llibres as $llibre) {
-                // Separar les dades del llibre
                 $dades_llibre = explode(':', $llibre);
-                // Assignar el nom i l'ID del llibre a variables
                 $nom = $dades_llibre[1];
                 $id = $dades_llibre[0];
-                // Mostrar l'opció del desplegable
                 echo "<option value='$id'>$nom</option>";
             } ?>
         </select><br>
@@ -190,12 +186,9 @@ function generateLlibresPDF($llibres) {
         <label for="id">Selecciona el llibre a esborrar:</label>
         <select name="id" required>
             <?php foreach ($llibres as $llibre) {
-                // Separar les dades del llibre
                 $dades_llibre = explode(':', $llibre);
-                // Assignar el nom i l'ID del llibre a variables
                 $nom = $dades_llibre[1];
                 $id = $dades_llibre[0];
-                // Mostrar l'opció del desplegable
                 echo "<option value='$id'>$nom</option>";
             } ?>
         </select><br>

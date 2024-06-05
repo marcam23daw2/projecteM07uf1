@@ -8,7 +8,6 @@ if(isset($_SESSION['username'])) {
     exit;
 }
 
-// Comprova si s'ha enviat el formulari 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = fopen($usersFile, "r");
 
@@ -19,11 +18,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $line = fgets($file);
         $data = explode(":", $line);
 
-        // Verifica les credencials
         if(trim($data[0]) == $username && password_verify($password, trim($data[1]))) {
             $_SESSION['username'] = $username;
             $_SESSION['email'] = trim($data[3]); 
-            $_SESSION['role'] = trim($data[2]); // Assigna el rol de l'usuari des del fitxer d'usuaris
+            $_SESSION['role'] = trim($data[2]); 
             fclose($file);
             header("Location: inici.php");
             exit;

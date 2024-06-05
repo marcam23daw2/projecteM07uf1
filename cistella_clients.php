@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-// Carregar els productes des d'un fitxer o base de dades
 $productsFile = './LLIBRES/llibres';
 $products = loadProducts($productsFile);
 
-// Funció per carregar els productes
 function loadProducts($filename) {
     if (!file_exists($filename)) {
         return [];
@@ -19,12 +17,11 @@ function loadProducts($filename) {
     return $productData;
 }
 
-// Gestionar la confirmació o modificació de la cistella
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['acceptar'])) {
-        // Guardar la comanda
+        // guardar la comanda
         saveOrder($_SESSION['cistella'], $products);
-        // Esborrar la cistella
+        // borrar la cistella
         unset($_SESSION['cistella']);
         header('Location: comanda_clients.php');
         exit;
@@ -34,11 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Funció per guardar la comanda
 function saveOrder($basket, $products) {
     $orderDirectory = './COMANDES/';
     if (!file_exists($orderDirectory)) {
-        mkdir($orderDirectory, 0777, true); // Crea el directorio si no existe
+        mkdir($orderDirectory, 0777, true); 
     }
     $orderFile = $orderDirectory . $_SESSION['username'] . '_comanda';
     $orderData = [];
@@ -47,14 +43,14 @@ function saveOrder($basket, $products) {
         $orderData[] = implode(':', array_merge($product, [$quantity]));
     }
     file_put_contents($orderFile, implode("\n", $orderData));
-    // Eliminar el fitxer de la cistella
+    // eliminar el fitxer de la cistella
     $basketFile = './CISTELLES/' . $_SESSION['username'] . '_cesta';
     if (file_exists($basketFile)) {
         unlink($basketFile);
     }
 }
 
-// Calcular el resum de la cistella
+// calcular el resum de la cistella
 $cistella = $_SESSION['cistella'] ?? [];
 $resum = [];
 $totalSenseIVA = 0;

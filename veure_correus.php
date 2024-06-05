@@ -6,7 +6,7 @@ if (!isset($_SESSION["username"]) || $_SESSION["role"] !== "gestor") {
     exit();
 }
 
-$correusFile = './correus.txt'; // Archivo donde se guardan los correos
+$correusFile = './correus';
 $correus = file($correusFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 ?>
 
